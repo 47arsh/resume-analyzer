@@ -1,3 +1,4 @@
+import ResumeCard from "~/components/ResumeCard";
 import { resumes } from "../../constants";
 import type { Route } from "./+types/home";
 import Navbar from "~/components/Navbar";
@@ -20,13 +21,14 @@ export default function Home() {
           <h2>Track your applications and resume ratings</h2>
           <p>Get smart feedback for your resume!</p>
         </div>
+        {resumes.length > 0 && (
+          <div className="resume-section">
+              {resumes.map((resume) => (
+                <ResumeCard key={resume.id} resume={resume} />
+              ))}
+          </div>
+        )}
       </section>
 
-      {resumes.map((resume) => (
-        <div key={resume.id}>
-          <h3>{resume.jobTitle}</h3>
-          <p>{resume.companyName}</p>
-        </div>
-      ))}
   </main>;
 }
